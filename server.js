@@ -23,11 +23,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routen importieren
 const trainingRoutes = require("./routes/trainingRoutes");
-const exerciseRoutes = require("./routes/exerciseRoutes");
 
 // Routen verwenden
 app.use("/api", trainingRoutes);
-app.use("/api", exerciseRoutes);
 
 // Grundroute
 app.get("/", (req, res) => {

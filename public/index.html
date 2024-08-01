@@ -31,36 +31,48 @@
             <option value="Krafttraining">Krafttraining</option>
             <option value="Wettkampf">Wettkampf</option>
           </select>
+          <button id="open-modal-button">Training hinzufügen</button>
         </div>
         <div id="calendar-container">
           <div id="calendar"></div>
         </div>
       </div>
-      <div id="form-container">
-        <div id="training-form">
-          <h2>Training hinzufügen</h2>
-          <form id="new-training-form">
-            <label for="date">Datum:</label>
-            <input type="date" id="date" name="date" required />
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required />
-            <label for="type">Typ:</label>
-            <select id="type" name="type" required>
-              <option value="Schwimmen">Schwimmen</option>
-              <option value="Krafttraining">Krafttraining</option>
-              <option value="Wettkampf">Wettkampf</option>
-            </select>
-            <label for="description">Beschreibung:</label>
-            <textarea id="description" name="description"></textarea>
-            <div id="exercises-container"></div>
-            <button type="button" id="add-exercise-button">
-              Übung hinzufügen
-            </button>
-            <button type="submit">Hinzufügen</button>
-          </form>
-        </div>
+    </div>
+
+    <!-- Modal für das Training hinzufügen Formular -->
+    <div id="training-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Training hinzufügen</h2>
+        <form id="new-training-form">
+          <label for="date">Datum:</label>
+          <input type="date" id="date" name="date" required />
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="type">Typ:</label>
+          <select id="type" name="type" required>
+            <option value="Schwimmen">Schwimmen</option>
+            <option value="Krafttraining">Krafttraining</option>
+            <option value="Wettkampf">Wettkampf</option>
+          </select>
+          <label for="description">Beschreibung:</label>
+          <textarea id="description" name="description"></textarea>
+
+          <!-- Container für Übungen -->
+          <div id="exercises-container"></div>
+
+          <button type="button" id="add-exercise-button">
+            Übung hinzufügen
+          </button>
+          <button type="submit">Hinzufügen</button>
+        </form>
       </div>
     </div>
+
     <script src="app.js"></script>
+    <script src="/scripts/modal.js"></script>
+    <script src="/scripts/calendar.js"></script>
+    <script src="/scripts/searchFilter.js"></script>
+    <script src="/scripts/addExercise.js"></script>
   </body>
 </html>
