@@ -1,0 +1,138 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden; /* Verhindert das Scrollen des gesamten Dokuments */
+}
+
+/* Container für das gesamte Layout */
+#container {
+  display: flex;
+  height: 100vh; /* Volle Höhe des Viewports */
+}
+
+/* Container für die Details */
+#details {
+  width: 300px; /* Feste Breite für den Bereich der Details */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(0, 0, 0, 0.22);
+  overflow-y: auto; /* Scrollen innerhalb des Details-Bereichs erlauben */
+}
+
+/* Details für das Training */
+#training-details {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Hauptbereich für Kalender und Filter */
+#main-content {
+  flex: 1; /* Nimmt den verbleibenden Platz ein */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Filter-Container für die Suche */
+#filter-container {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Flexbox für den Kalender */
+#calendar-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Verhindert das Scrollen im Kalender-Container */
+  padding: 10px;
+}
+
+/* Stil für den Kalender */
+#calendar {
+  flex: 1;
+  overflow: auto; /* Ermöglicht das Scrollen innerhalb des Kalenders, falls erforderlich */
+}
+
+/* Container für die Formulare */
+#form-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* Feste Breite für den Formularbereich */
+}
+
+/* Flexbox für die einzelnen Formulare */
+#training-form,
+#exercise-form {
+  box-sizing: border-box;
+  padding: 20px;
+  overflow-y: auto; /* Falls der Inhalt größer ist, scrollbar */
+}
+
+#training-form {
+  flex: 7; /* 70% der Höhe */
+  border-bottom: 1px solid #ddd;
+  background-color: #fff; /* Weißer Hintergrund für bessere Lesbarkeit */
+}
+
+#exercise-form {
+  flex: 3; /* 30% der Höhe */
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9; /* Leicht anderer Hintergrund für Differenzierung */
+}
+
+/* Stil für die Formulare */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea,
+button {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 40px; /* Angepasste Mindesthöhe für die textarea */
+}
+
+button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.fc-event-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin: 5px;
+  vertical-align: middle;
+}
+.fc-event-title {
+  display: inline-block;
+  vertical-align: middle;
+}
