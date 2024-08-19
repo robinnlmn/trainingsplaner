@@ -173,3 +173,89 @@ button:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
+.training-details-seperator {
+  height: 2px;
+  background-color: gray;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.training-details-exercisename {
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.table_component {
+  border: 1px solid #dededf;
+  height: 100%;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0px;
+  text-align: center;
+  overflow: auto;
+  width: 100%;
+}
+
+.table_component caption {
+  caption-side: top;
+  text-align: left;
+}
+
+.table_component th {
+  border: 1px solid #dededf;
+  background-color: #eceff1;
+  color: #000000;
+  padding: 5px;
+}
+
+.table_component td {
+  border: 1px solid #dededf;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 5px;
+}
+
+.delete-set-button {
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.delete-set-button:hover {
+  background-color: rgb(219, 0, 0);
+}
+
+.training-details-trainingname {
+  margin: 0;
+  padding: 0;
+}
+
+.training-details-trainingname p {
+  margin: 0;
+  padding: 0;
+}
+
+.training-details-trainingname p:first-child {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.training-details-trainingname p:last-child {
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.training-details-description {
+  margin-top: 30px;
+}
+
+.training-details-description p {
+  margin: 0;
+  padding: 0;
+}

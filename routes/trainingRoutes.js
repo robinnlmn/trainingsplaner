@@ -4,12 +4,14 @@ const Training = require("../models/Training");
 
 // Trainingseinheit erstellen
 router.post("/trainings", async (req, res) => {
-  const { date, name, type, description, exercises } = req.body;
+  const { date, name, type, description, volume, exercises } = req.body;
+  console.log(req.body)
   const newTraining = new Training({
     date,
     name,
     type,
     description,
+    volume,
     exercises,
   });
   try {
@@ -56,6 +58,7 @@ router.get("/trainings/:id", async (req, res) => {
     const training = await Training.findById(req.params.id);
     if (training) {
       res.status(200).json(training);
+      console.log(training)
     } else {
       res.status(404).json({ message: "Training not found" });
     }

@@ -1,29 +1,28 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-// Definition des Training-Schemas
 const TrainingSchema = new Schema({
-  date: { type: Date, required: true }, // Datum des Trainings
-  name: { type: String, required: true }, // Name des Trainings
+  date: { type: Date, required: true },
+  name: { type: String, required: true },
   type: {
     type: String,
     required: true,
-    enum: ["Krafttraining", "Schwimmen", "Wettkampf"], // Erlaubte Werte für den Typ
-  }, // Typ des Trainings (z.B. Schwimmen, Krafttraining, Wettkampf)
-  description: String, // Beschreibung des Trainings
+    enum: ["Krafttraining", "Schwimmen", "Wettkampf"],
+  },
+  description: String,
   exercises: [
     {
-      name: { type: String }, // Name der Übung
-      setsCount: { type: Number }, // Anzahl der Sets (Sätze)
+      name: { type: String },
+      setsCount: { type: Number },
       sets: [
         {
-          weight: { type: Number }, // Gewicht der Übung
-          reps: { type: Number }, // Wiederholungen der Übung
+          weight: { type: Number },
+          reps: { type: Number },
         },
       ],
     },
   ],
+  volume: { type: Number },
 });
 
-// Export des Modells
 module.exports = mongoose.model("Training", TrainingSchema);
