@@ -2,13 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
-
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // MongoDB Verbindung
 mongoose.connect("mongodb://localhost/trainingsplaner");
@@ -24,9 +25,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routen importieren
 const trainingRoutes = require("./routes/trainingRoutes");
+const statisticRoutes = require("./routes/statisticRoutes");
 
 // Routen verwenden
 app.use("/api", trainingRoutes);
+app.use("/api", statisticRoutes);
 
 // Grundroute
 app.get("/", (req, res) => {
@@ -34,7 +37,7 @@ app.get("/", (req, res) => {
 });
 
 // Server starten
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

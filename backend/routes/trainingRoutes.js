@@ -5,7 +5,7 @@ const Training = require("../models/Training");
 // Trainingseinheit erstellen
 router.post("/trainings", async (req, res) => {
   const { date, name, type, description, volume, exercises } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   const newTraining = new Training({
     date,
     name,
@@ -58,7 +58,7 @@ router.get("/trainings/:id", async (req, res) => {
     const training = await Training.findById(req.params.id);
     if (training) {
       res.status(200).json(training);
-      console.log(training)
+      console.log(training);
     } else {
       res.status(404).json({ message: "Training not found" });
     }
@@ -138,6 +138,20 @@ router.post("/trainings/:id/exercises", async (req, res) => {
     await training.save();
 
     res.status(200).json(training);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.delete("/trainings/:id", async (req, res) => {
+  try {
+    const training = await Training.findByIdAndDelete(req.params.id);
+
+    if (!training) {
+      return res.status(404).json({ message: "Training not found" });
+    }
+
+    res.status(200).json({ message: "Training successfully deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

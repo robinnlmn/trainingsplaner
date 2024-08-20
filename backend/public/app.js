@@ -81,18 +81,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const response = await fetch(`/api/trainings/${eventId}`);
     const training = await response.json();
     detailsEl.innerHTML = `
-      <div class="training-details-trainingname"><p>${training.name}</p> <p> ${training.type} ${new Date(
-        training.date
-      ).toLocaleDateString()}</p></div>
+      <div class="training-details-trainingname"><p>${training.name}</p> <p> ${
+      training.type
+    } ${new Date(training.date).toLocaleDateString()}</p></div>
       <div class="training-details-description">
         <p><strong>Beschreibung</strong></p>
         <p>${training.description}</p>
       </div>
-      ${training.type == "Schwimmen" ? (      
-        `<p><strong>Umfang:</strong> ${training.volume}m</p>`
-      ) : (
-        ``
-      )}
+      ${
+        training.type == "Schwimmen"
+          ? `<p><strong>Umfang:</strong> ${training.volume}m</p>`
+          : ``
+      }
       <div class="training-details-seperator"></div>
       ${
         training.exercises
@@ -100,7 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
               .map(
                 (exercise) => `
                 <div>
-                  <p class="training-details-exercisename"><strong>${exercise.name}</strong></p>
+                  <p class="training-details-exercisename"><strong>${
+                    exercise.name
+                  }</strong></p>
                   <table class="table_component">
                     <thead>
                       <tr>
@@ -170,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!updateResponse.ok) {
           alert("Fehler beim Speichern der Änderungen");
         } else {
-          await loadTrainingDetails(eventId); 
+          await loadTrainingDetails(eventId);
         }
       });
     });
@@ -265,12 +267,15 @@ document.addEventListener("DOMContentLoaded", function () {
       <button type="button" class="add-set">Set hinzufügen</button>
       <button type="button" class="remove-exercise">Übung entfernen</button> <!-- Hinzufügen der Entfernen-Schaltfläche -->
     `;
-    
-    document.getElementById("exercises-container").appendChild(exerciseContainer);
+
+    document
+      .getElementById("exercises-container")
+      .appendChild(exerciseContainer);
 
     const setsContainer = exerciseContainer.querySelector(".sets-container");
     const addSetButton = exerciseContainer.querySelector(".add-set");
-    const removeExerciseButton = exerciseContainer.querySelector(".remove-exercise");
+    const removeExerciseButton =
+      exerciseContainer.querySelector(".remove-exercise");
 
     addSetButton.addEventListener("click", () => {
       createSetInputs(setsContainer);
@@ -282,7 +287,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     createSetInputs(setsContainer);
   }
-
 
   document
     .getElementById("add-exercise-button")
@@ -300,11 +304,11 @@ document.addEventListener("DOMContentLoaded", function () {
       exercises: [],
     };
 
-const volumeInput = document.getElementById("volume");
-console.log(volumeInput.value); // Should log the current value in the volume input
+    const volumeInput = document.getElementById("volume");
+    console.log(volumeInput.value); // Should log the current value in the volume input
 
-const formData2 = new FormData(newTrainingForm);
-console.log(formData2.get("volume")); // Should log the value or null
+    const formData2 = new FormData(newTrainingForm);
+    console.log(formData2.get("volume")); // Should log the value or null
 
     if (data.type === "Krafttraining") {
       const exercises = document.querySelectorAll(".exercise");
@@ -352,6 +356,6 @@ console.log(formData2.get("volume")); // Should log the value or null
     .getElementById("open-modal-button")
     .addEventListener("click", function () {
       modal.style.display = "block";
-      adjustFormFields(); 
+      adjustFormFields();
     });
 });
