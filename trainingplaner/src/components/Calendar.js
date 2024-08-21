@@ -10,6 +10,7 @@ const Calendar = forwardRef(({ onEventClick }, ref) => {
   useImperativeHandle(ref, () => ({
     refetchEvents: () => {
       const calendarApi = calendarRef.current.getApi();
+      calendarApi.removeAllEvents();
       calendarApi.refetchEvents();
     },
     removeAllEvents: () => {

@@ -2,28 +2,16 @@ const express = require("express");
 const router = express.Router();
 const Training = require("../models/Training");
 
-// Get the last 3 trainings of type "Schwimmen"
-router.get("/statistic", async (req, res) => {
-  try {
-    // Query to find the last 3 "Schwimmen" trainings, sorted by date in descending order
-    const trainings = await Training.find({ type: "Schwimmen" })
-      .sort({ date: 1 }) // Sort by date in descending order (latest first)
-      .limit(req.body.limit); // Limit the result to 3 documents
+// Combined route to get trainings of a specified type
+router.get("/statistic/volumeOverTime", async (req, res) => {
+  const type = req.query.type || "Schwimmen"; // Default to "Schwimmen" if no type is specified
+  const limit = req.body.limit || null; // Default to 3 if no limit is specified
 
-    res.json(trainings);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching the data" });
-  }
-});
-
-router.get("/statistic/competitions", async (req, res) => {
   try {
-    // Query to find the last 3 "Schwimmen" trainings, sorted by date in descending order
-    const trainings = await Training.find({ type: "Wettkampf" })
-      .sort({ date: 1 }) // Sort by date in descending order (latest first)
-      .limit(req.body.limit); // Limit the result to 3 documents
+    // Query to find the last trainings of the specified type, sorted by date in ascending order
+    const trainings = await Training.find({ type })
+      .sort({ date: 1 }) // Sort by date in ascending order
+      .limit(limit); // Limit the result to the specified number of documents
 
     res.json(trainings);
   } catch (error) {
