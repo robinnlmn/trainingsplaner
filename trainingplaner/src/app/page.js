@@ -8,6 +8,7 @@ export default function Home() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentType, setCurrentType] = useState("Schwimmen");
+  const [intensityLabel, setIntensityLabel] = useState(1);
 
   const calendarRef = useRef(null); // Add a ref for the Calendar component
 
@@ -34,6 +35,7 @@ export default function Home() {
       type: formData.get("type"),
       description: formData.get("description"),
       volume: formData.get("volume") || null,
+      intensity: formData.get("intensity") || null,
       exercises: [],
     };
 
@@ -143,10 +145,14 @@ export default function Home() {
               {selectedEvent.type}{" "}
               {new Date(selectedEvent.date).toLocaleDateString()}
             </p>
+
             <br />
+
             <p>{selectedEvent.description}</p>
-            <hr></hr>
-            {selectedEvent.exercises.length > 0 ? (
+
+            {selectedEvent.type !== "Wettkampf" ? <hr></hr> : <></>}
+
+            {selectedEvent.type == "Krafttraining" ? (
               selectedEvent.exercises.map((exercise, index) => {
                 return (
                   <div className={styles.trainingDetailsContentExercise}>
@@ -186,8 +192,18 @@ export default function Home() {
                   </div>
                 );
               })
+            ) : selectedEvent.type == "Schwimmen" ? (
+              <>
+                <p>Umfang: {selectedEvent.volume}m</p>
+                <p>
+                  Intensity:{" "}
+                  {selectedEvent.intensity === "5"
+                    ? "MAX"
+                    : `${selectedEvent.intensity}`}
+                </p>
+              </>
             ) : (
-              <p>Umfang: {selectedEvent.volume}m</p>
+              <></>
             )}
 
             <button
@@ -253,12 +269,29 @@ export default function Home() {
                     </button>
                   </>
                 ) : (
-                  <input
-                    type="number"
-                    id="volume"
-                    name="volume"
-                    placeholder="Volume (in m)"
-                  />
+                  <>
+                    <input
+                      type="number"
+                      id="volume"
+                      name="volume"
+                      placeholder="Volume (in m)"
+                    />
+                    <div className={styles.intensitySlider}>
+                      <input
+                        type="range"
+                        id="intensity"
+                        name="intensity"
+                        min={1}
+                        max={5}
+                        step={1}
+                        value={intensityLabel}
+                        onChange={(e) => setIntensityLabel(e.target.value)}
+                      />
+                      <label>
+                        {intensityLabel == 5 ? "MAX" : intensityLabel}
+                      </label>
+                    </div>
+                  </>
                 )}
               </>
             )}

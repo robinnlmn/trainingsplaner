@@ -49,12 +49,17 @@ const TopBar = forwardRef(({ newTrainingClick }, ref) => {
         placeholder="Suche nach Name..."
         onInput={() => loadEvents()}
       />
+
       <select id="type-filter" onChange={() => loadEvents()}>
         <option value="">Alle Typen</option>
         <option value="Schwimmen">Schwimmen</option>
         <option value="Krafttraining">Krafttraining</option>
         <option value="Wettkampf">Wettkampf</option>
       </select>
+
+      <button onClick={() => (window.location = "/statistics")}>
+        Statistics
+      </button>
     </div>
   );
 });

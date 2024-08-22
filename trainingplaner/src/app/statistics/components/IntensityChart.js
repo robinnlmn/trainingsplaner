@@ -24,7 +24,7 @@ ChartJS.register(
   Filler
 );
 
-export default function VolumeChart() {
+export default function IntensityChart() {
   const [data, setData] = useState([]);
   const [competitions, setCompetitions] = useState([]);
   const serverUrl = "http://192.168.178.112:8080";
@@ -89,10 +89,10 @@ export default function VolumeChart() {
           const training = data.find(
             (t) => new Date(t.date).toISOString().split("T")[0] === date
           );
-          return training ? training.volume : null;
+          return training ? training.intensity : null;
         }),
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(255, 43, 43, 1)",
+        backgroundColor: "rgba(255, 43, 43, 0.2)",
         fill: true,
       },
       {
@@ -117,7 +117,7 @@ export default function VolumeChart() {
       },
       title: {
         display: true,
-        text: "Training Volume and Competitions Over Time",
+        text: "Intensity and Competitions Over Time",
       },
       tooltip: {
         callbacks: {

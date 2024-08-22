@@ -24,7 +24,7 @@ ChartJS.register(
   Filler
 );
 
-export default function VolumeChart() {
+export default function VolumeIntensityChart() {
   const [data, setData] = useState([]);
   const [competitions, setCompetitions] = useState([]);
   const serverUrl = "http://192.168.178.112:8080";
@@ -94,6 +94,19 @@ export default function VolumeChart() {
         borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         fill: true,
+        yAxisID: "y1",
+      },
+      {
+        label: "Intensity",
+        data: uniqueDates.map((date) => {
+          const training = data.find(
+            (t) => new Date(t.date).toISOString().split("T")[0] === date
+          );
+          return training ? training.intensity : null;
+        }),
+        borderColor: "rgba(255, 43, 43, 1)",
+        backgroundColor: "rgba(255, 43, 43, 0.2)",
+        yAxisID: "y2",
       },
       {
         label: "Competitions",
@@ -106,6 +119,7 @@ export default function VolumeChart() {
         borderColor: "rgba(255, 99, 132, 1)",
         pointStyle: "rect",
         pointRadius: 12,
+        yAxisID: "y1",
       },
     ],
   };
@@ -117,7 +131,7 @@ export default function VolumeChart() {
       },
       title: {
         display: true,
-        text: "Training Volume and Competitions Over Time",
+        text: "Training Volume, Intensity, and Competitions Over Time",
       },
       tooltip: {
         callbacks: {
@@ -138,8 +152,26 @@ export default function VolumeChart() {
           autoSkip: false,
         },
       },
-      y: {
+      y1: {
+        type: "linear",
+        position: "left",
         beginAtZero: true,
+        title: {
+          display: true,
+          text: "Volume",
+        },
+      },
+      y2: {
+        type: "linear",
+        position: "right",
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Intensity",
+        },
+        grid: {
+          drawOnChartArea: false, // This prevents the y2 axis grid from overlaying with y1 axis grid
+        },
       },
     },
   };

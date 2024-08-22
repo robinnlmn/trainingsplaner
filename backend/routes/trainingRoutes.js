@@ -4,7 +4,8 @@ const Training = require("../models/Training");
 
 // Trainingseinheit erstellen
 router.post("/trainings", async (req, res) => {
-  const { date, name, type, description, volume, exercises } = req.body;
+  const { date, name, type, description, volume, intensity, exercises } =
+    req.body;
   console.log(req.body);
   const newTraining = new Training({
     date,
@@ -12,6 +13,7 @@ router.post("/trainings", async (req, res) => {
     type,
     description,
     volume,
+    intensity,
     exercises,
   });
   try {

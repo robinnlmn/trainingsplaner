@@ -23,6 +23,7 @@ const TrainingSchema = new Schema({
     },
   ],
   volume: { type: Number },
+  intensity: { type: Number },
 });
 
 module.exports = mongoose.model("Training", TrainingSchema);
